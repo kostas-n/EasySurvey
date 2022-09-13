@@ -1,0 +1,15 @@
+version: "3.1"
+
+services:
+  liquibase:
+    container_name: liquibase
+    image: liquibase/liquibase
+    command: |
+     --url=jdbc:oracle:thin:@host.docker.internal/mydb 
+     --changeLogFile=changelog.xml update 
+     --username=kostas 
+     --password=kostas 
+     --driver=oracle.jdbc.driver.OracleDriver
+    volumes:
+      - ./config/changelog.xml:/liquibase/changelog.xml
+      - ./sql:/liquibase/sql
